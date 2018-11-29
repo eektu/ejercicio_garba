@@ -1,0 +1,24 @@
+
+Requisitos para correr:
+    -mongo instalado
+    -configurar la ruta a Mongo en:
+        /config/config.js (db_dev)
+    -ejecutar:
+        npm i
+        npm run start:dev
+
+Ordenar el código
+Mejorar el server
+Maquetar todo
+Estilar todo
+Separar ambientes (dev/prod) por variables/webpack
+Devolver códigos de error
+Páginas de error/respuestas (
+    401 - Unauthorized,
+    404 - Not Found, 
+    405 - Method Not Allowed,
+    418 - I'm a Teapot, obvio
+    501 - Not Implemented
+)
+Armar el AutoSuggest
+PlaceHolders para el loading
