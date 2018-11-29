@@ -7,6 +7,21 @@ Requisitos para correr:
         npm i
         npm run start:dev
 
+apiKey:
+    x-api-key: que-hacemos-gon?
+    es la key que permite que el listado vuelva completo (con los enabled: true/false)
+
+Rutas del back:
+    [GET]       localhost:8080/api/products
+    [PATCH]     localhost:8080/api/products/:id
+
+Rutas del front:
+    home:       localhost:8080/
+    listing:    localhost:8080/products
+    detalles:   localhost:8080/products/:id             Falta hacer la pegada y maquetar
+    admin:      localhost:8080/admin                    Falta implementar
+    not found:  localhost:8080/<cualquier otra cosa>
+
 Ordenar el código
 Mejorar el server
 Maquetar todo
