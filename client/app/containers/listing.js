@@ -7,6 +7,8 @@ import { fetchProducts, FETCH_PRODUCTS_IN_PROGRESS } from '../redux/actions/list
 
 import LoadingBar from '../components/LoadingBar'
 import ProductList from '../components/ProductList'
+import UncontrolledAutoSuggest from '../components/AutoSuggest';
+import { fetchList, FETCH_LIST_IN_PROGRESS } from '../redux/actions/autosuggest';
 
 class Listing extends React.Component {
   componentDidMount(){
@@ -18,14 +20,14 @@ class Listing extends React.Component {
   }
 
   render() {
-    const { listing: { items, action }, goToDetails } = this.props
+    const { listing: { items, action }, goToDetails, autosuggest: { query, items: searchItems, action: searchAction }, fetchList } = this.props
     const isLoading = action === FETCH_PRODUCTS_IN_PROGRESS
-    const loadingMessage = 'Cargando productos...'
+    const isSearching = searchAction === FETCH_LIST_IN_PROGRESS
 
     return (
       <div className={'listingContainer'}>
-        <LoadingBar isLoading={ isLoading } message={ loadingMessage } />
-        <ProductList items={ items } goToDetail={goToDetails} />
+        <LoadingBar isLoading={ isLoading }/>
+        <ProductList items={ items } goToDetail={ goToDetails } />
       </div>
     )
   }
@@ -33,6 +35,7 @@ class Listing extends React.Component {
 
 const mapStateToProps = state => ({
   listing: state.listing,
+  autosuggest: state.autosuggest,
   history
 })
 
@@ -40,6 +43,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchProducts,
+      fetchList,
       goToDetails: (id) => push(`/products/${id}`)
     },
     dispatch

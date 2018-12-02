@@ -1,39 +1,21 @@
 
-Requisitos para correr:
-    -mongo instalado
-    -configurar la ruta a Mongo en:
-        /config/config.js (db_dev)
-    -ejecutar:
-        npm i
-        npm run start:dev
-
-apiKey:
-    x-api-key: que-hacemos-gon?
-    es la key que permite que el listado vuelva completo (con los enabled: true/false)
-
-Rutas del back:
-    [GET]       localhost:8080/api/products
-    [PATCH]     localhost:8080/api/products/:id
-
-Rutas del front:
-    home:       localhost:8080/
-    listing:    localhost:8080/products
-    detalles:   localhost:8080/products/:id             Falta hacer la pegada y maquetar
-    admin:      localhost:8080/admin                    Falta implementar
-    not found:  localhost:8080/<cualquier otra cosa>
-
 Ordenar el código
-Mejorar el server
-Maquetar todo
-Estilar todo
-Separar ambientes (dev/prod) por variables/webpack
-Devolver códigos de error
-Páginas de error/respuestas (
+Consultas a Mongo   { PATCH de Blacklist }
+Maquetar            { AdminPanel, Product }
+Estilar             { AutoSuggest, AdminPanel, Product }
+
+Separar ambientes (dev/prod)
+Pedir apikey en el header para acceder al admin
+Crear nueva clase Error { aplicar en FRONT, BACK }      OK
+Páginas de error (                                      OK
     401 - Unauthorized,
+    403 - Forbidden,
     404 - Not Found, 
     405 - Method Not Allowed,
-    418 - I'm a Teapot, obvio
+    418 - I'm a Teapot,
     501 - Not Implemented
 )
-Armar el AutoSuggest
+Mejorar el estilo del sitio y las reglas SCSS { variables, etc }
+Limpiar archivos sin utilidad
 PlaceHolders para el loading
+Actualizar la documentación { crear el README.md }

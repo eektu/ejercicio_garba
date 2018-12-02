@@ -1,0 +1,34 @@
+%background-gradient {
+    background: $gradientColor1; /* Old browsers */
+    background: -moz-linear-gradient(top, $gradientColor1-alpha 0%, $gradientColor2-alpha 50%, $gradientColor3-alpha 51%, $gradientColor4-alpha 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, $gradientColor1-alpha 0%,$gradientColor2-alpha 50%,$gradientColor3-alpha 51%,$gradientColor4-alpha 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, $gradientColor1-alpha 0%,$gradientColor2-alpha 50%,$gradientColor3-alpha 51%,$gradientColor4-alpha 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$gradientColor5, endColorstr=$gradientColor6,GradientType=0 ); /* IE6-9 */
+}
+
+
+
+.productListItem {
+    width: 100%;
+    height: 145px;
+    float: left;
+    overflow: hidden;
+    padding: 2px;
+    //background-color: $foreColor2;
+    @extend %background-gradient;
+    cursor: pointer;
+    margin: 3px;
+
+    h2 {
+        font-size: 18px;
+        padding-left: 10px;
+        float: left;
+        width: 300px;
+        word-wrap: break-word;
+    }
+
+    button {
+        float: left;
+    }
+}
+

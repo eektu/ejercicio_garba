@@ -1,9 +1,11 @@
 import React from 'react'
 import ProductListItem from "./ProductListItem"
 
-const ProductList = ({ items, goToDetail }) => {
+const ProductList = ({ items, goToDetail, style='productList' }) => {
     if (items && items.length)
-        return <div className={'productList'}>{items.map((i, key) => <ProductListItem itemData={i} goToDetail={goToDetail} key={key}/>)}</div>
+        return <div className={ style }>
+                {items.map((i, key) => <ProductListItem itemData={i} goToDetail={goToDetail} key={key}/>)}
+            </div>
     return null
 }
 

@@ -6,9 +6,10 @@ const endpoint = process.env === 'development' ? apiEndpoint.dev : apiEndpoint.p
 export default () => {
   const client = createRestApiClient().withConfig({ baseURL: endpoint })
   return {
-    getProducts: () => client.request({
+    getList: (query) => client.request({
       method: 'GET',
-      url: '/products'
+      url: '/search',
+      params: {q: query}
     })
   };
 };
