@@ -1,21 +1,16 @@
 
 Ordenar el código
-Consultas a Mongo   { PATCH de Blacklist }
 Maquetar            { AdminPanel, Product }
 Estilar             { AutoSuggest, AdminPanel, Product }
-
-Separar ambientes (dev/prod)
-Pedir apikey en el header para acceder al admin
 Crear nueva clase Error { aplicar en FRONT, BACK }      OK
-Páginas de error (                                      OK
-    401 - Unauthorized,
+Páginas de error (
+    401 - Unauthorized,                                 OK
     403 - Forbidden,
-    404 - Not Found, 
+    404 - Not Found,                                    OK
     405 - Method Not Allowed,
-    418 - I'm a Teapot,
+    418 - I'm a Teapot, obvio
     501 - Not Implemented
 )
 Mejorar el estilo del sitio y las reglas SCSS { variables, etc }
-Limpiar archivos sin utilidad
-PlaceHolders para el loading
-Actualizar la documentación { crear el README.md }
+PlaceHolders para el loading de productos
+Actualizar la documentación { crear el README.md }      OK

@@ -10,7 +10,6 @@ const initState = {
 export default (state = initState, action) => {
     switch(action.type) {
         case FETCH_PRODUCTS_IN_PROGRESS:
-            return {...state, error: "", status: 0, action: action.type}
         case FETCH_ALL_PRODUCTS:
             return {...state, error: "", status: 0, action: action.type}
         case FETCH_PRODUCTS_FAILURE:

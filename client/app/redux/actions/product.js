@@ -18,9 +18,7 @@ export const fetchProductDetails = (productId) => {
         }
       })
       .catch((res) => {
-        console.log("ERROR DE FETCH")
-        console.log(extractError(res))
-        return dispatch(fetchProductDetailsFailure({ error: 'Falló el fetch al detalle del producto', status: res.status }))
+        return dispatch(fetchProductDetailsFailure({ error: 'Falló el fetch al detalle del producto', status: extractError(res).status }))
       })
   }
 }

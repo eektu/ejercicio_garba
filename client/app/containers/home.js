@@ -3,12 +3,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 const Home = (props) => (
-  <div>Hola vieja</div>
+  <div>Hola!</div>
 )
 
-
-
-const mapStateToProps = ({ counter }) => ({
+const mapStateToProps = ({  }) => ({
 })
 
 const mapDispatchToProps = dispatch =>

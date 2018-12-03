@@ -8,6 +8,7 @@ import { fetchProductDetails, FETCH_DETAILS_IN_PROGRESS } from '../redux/actions
 
 import ProductDetails from '../components/ProductDetails'
 import LoadingBar from '../components/LoadingBar'
+import NotFound from '../components/errorPages/NotFound'
 
 
 class Product extends React.Component {
@@ -16,21 +17,16 @@ class Product extends React.Component {
     this.props.fetchProductDetails(params.id)
   }
 
-  componentDidCatch(error, info) {
-    console.log("atrapamos un error")
-    console.log(error)
-    console.log(info)
-  }
-
   constructor(props) {
     super(props)
   }
 
+  // ({ message: { main, desc, action, img }, navAction, style='errorPage notFound' }) 
   render() {
-    const { product, product: { details, action }, backToList, match: { params }, style='productContainer' } = this.props
+    const { product: { details, action, status }, backToList, match: { params }, style='productContainer' } = this.props
     const isLoading = (action === FETCH_DETAILS_IN_PROGRESS && details && details.id !== params.id)
+    if (status === 404) return <NotFound />
 
-    console.log( product )
     return (
       <div className={ style }>
         <LoadingBar isLoading={ isLoading }/>

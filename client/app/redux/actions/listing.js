@@ -30,16 +30,16 @@ function fetchProductsFailure(data) {
 export const fetchProducts = () => {
     return (dispatch, getState) => {
 
-      dispatch(fetchProductsRequest());
+      dispatch(fetchProductsRequest())
   
       return listingService().getProducts()
         .then((res) => {
           if (res.status === 200) {
-            return dispatch(fetchProductsSuccess(res.data));
+            return dispatch(fetchProductsSuccess(res.data))
           }
         })
         .catch(() => {
-          return dispatch(fetchProductsFailure({error: 'Falló el fetch a /products', status: res.status }));
-        });
-    };
+          return dispatch(fetchProductsFailure({error: 'Falló el fetch a /products', status: res.status }))
+        })
+    }
   }

@@ -47,26 +47,38 @@ if (isDev) {
 
   app.use(webpackHotMiddleware(compiler));
   app.use(express.static(path.resolve(__dirname, '../dist')))
+
+  /* manejo de errores DEV */
+  app.use(function(err, req, res, next) {
+    if (err) {
+      res.status(err.code).json({
+        type: err.name,
+        message: err.message,
+        status: err.code
+      })
+      return next(err)
+    }
+  })
 } else {
   app.use(express.static(path.resolve(__dirname, '../dist')))
   app.get('*', function (req, res) {
     res.sendFile(path.resolve(__dirname, '../dist/index.html'))
     res.end();
-  });
+  })
+
+  /* manejo de errores PROD */
+  app.use(function(err, req, res, next) {
+    if (err) {
+      res.status(err.code).json({
+        type: err.name,
+        status: err.code
+      })
+      return next(err)
+    }
+  })
 }
 
-/* definir segun ambiente */
-app.use(function(err, req, res, next) {
-  if (err) {
-    console.log(err)
-    res.status(err.code).json({
-      type: err.name,
-      message: err.message,
-      status: err.code
-    });
-    return next(err)
-  }
-})
+
 
 app.listen(port, 'localhost', (err) => {
   if (err) console.log(err)

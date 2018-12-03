@@ -6,6 +6,17 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$gradientColor5, endColorstr=$gradientColor6,GradientType=0 ); /* IE6-9 */
 }
 
+.listItemWrapper {
+    width: 100%;
+    padding: 5px 0 10px 0;
+    background-color: $foreColor3;
+    color: $bkgrColor3;
+    margin-bottom: 4px;
+
+    .productListItem {
+        color: black;
+    }
+}
 
 
 .productListItem {

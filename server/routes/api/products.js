@@ -41,13 +41,6 @@ async function getBlacklist() {
       .then(blacklist => blacklist.map(i => i.id))
 }
 
-async function getIfBlacklisted(productId) {
-  console.log("--> getIfBlacklisted")
-  return await Blacklist.findOne({ id: productId, enabled: false })
-      .lean()
-      .exec()
-      .then(e => ({id: e.id, enabled: e.enabled}))
-}
 
 async function asyncProcessBlacklist(products, blacklist, isAdmin) {
   const [pro, bla] = await Promise.all([products, blacklist])
@@ -59,10 +52,6 @@ async function asyncProcessBlacklist(products, blacklist, isAdmin) {
       i => isAdmin || i.enabled
     )
   }
-}
-
-async function getIfBlacklisted(productId) {
-  return await Blacklist.findOne({ id: productId })
 }
 
 module.exports = (app, endpoint, apiKey) => {
@@ -79,18 +68,20 @@ module.exports = (app, endpoint, apiKey) => {
   })
 
   app.get('/api/products/:id', (req, res, next) => {
-    if(isAdmin(req)) getProductDetails(endpoint, req.params.id).then(r => res.json(r.data)).catch(err => next(err))
-
-    const [details, blacklist] = Promise.all([
-      getProductDetails(endpoint, req.params.id).then(r => r.data),
-      getIfBlacklisted(req.params.id).then(b => b.enabled)
-    ]).then(results => {
-      if(results[1]) res.json(results[0])
-
-      next(new errs.NotFoundError())
-    }).catch(() => {next(new errs.InternalServerError())})
-    
-    next(new errs.NotFoundError())
+    if(isAdmin(req)){
+      getProductDetails(endpoint, req.params.id).then(r => res.json(r.data)).catch(err => next(err))
+    }else{
+      Promise.all([
+        getProductDetails(endpoint, req.params.id).then(r => r.data),
+        getBlacklist()
+      ]).then(([det, blk]) => {
+        if(!blk.includes(req.params.id)){
+          res.json(det)
+        }else{
+          next(new errs.NotFoundError())
+        }
+      })
+    }
   })
 
   app.patch('/api/products/:id', (req, res, next) => {
@@ -101,9 +92,9 @@ module.exports = (app, endpoint, apiKey) => {
       next(new errs.BadRequestError())
 
     Blacklist.findOneAndUpdate({ id: req.params.id },
-      { enabled: req.body.enabled },
-      { upsert: true })
-      .then((b) => res.json(b))
+      { enabled: req.body.enabled, brand: 'URG!arino', id: req.params.id },
+      { upsert: true, new: true })
+      .then(({ id, brand, enabled }) => res.json({ id: id, brand: brand, enabled: enabled }))
       .catch(err => next(new errs.InternalServerError()))
   })
 }

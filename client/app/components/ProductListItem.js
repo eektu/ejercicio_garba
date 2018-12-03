@@ -2,7 +2,7 @@ import React from 'react'
 import Picture from './Picture'
 import PriceItem from './PriceItem'
 
-const ProductListItem = ({ itemData, goToDetail, style='productListItem' }) => {
+const ProductListItem = ({ itemData, goToDetail=()=>{}, style='productListItem' }) => {
     const { price, list_price: listPrice, discount } = itemData
 
     //Render botón para ir al detalle o en otro componente wrappeador?
